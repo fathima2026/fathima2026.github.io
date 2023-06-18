@@ -6,7 +6,6 @@ buttons.forEach(function(button){
 });
 list.addEventListener('click', removefromCart);
 
-let count = 0;
 
 function addToCart(e){
 
@@ -15,7 +14,7 @@ function addToCart(e){
     let row = document.createElement('tr');
     let price = e.target.previousElementSibling.innerHTML;
     let product = e.target.previousElementSibling.previousElementSibling.innerHTML
-    row.innerHTML = `<th scope="row">${count}</th>
+    row.innerHTML = `<th scope="row"></th>
     <td>${product}</td>
     <td>${price}</td>`
     let link = document.createElement('a');
@@ -32,7 +31,6 @@ function removefromCart(e){
         if(confirm('Are you sure?')){
             let parent = e.target.parentElement;
             parent.remove();
-            count--;
         }
     }
 }
