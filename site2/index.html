@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+        integrity="sha256-ECB9bbROLGm8wOoEbHcHRxlHgzGqYpDtNTgDTyDz0wg=" crossorigin="anonymous" />
+    <title> Expression Validator </title>
+   
+    <style>
+        .success .error {
+            color:white;
+            padding: 100px;
+            margin: 20px 0 15px 0;
+            border-radius: 5px;
+        }
+        .success{
+            background: rgb(128, 246, 145);
+            padding: 25px;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+        }
+        .error{
+            background: rgb(222, 102, 102);
+            padding: 25px;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h4>Expression Validator</h4>
+        
+          
+       <button onclick="validateEmail()"  class="u-full-width"> Email </button>
+
+       <button onclick="validatePhone()"  class="u-full-width"> Phone </button>
+
+       <button onclick="validatePostal()"  class="u-full-width"> Postal Code </button>
+       
+    
+    </div>
+    
+
+
+    <div id="result"></div>
+  
+
+</body>
+
+<script>
+    function validateEmail(){
+        let expression = prompt("Enter the expression to validate");
+        let re = /^([a-zA-Z0-9]\.?)+[^\.]@([a-zA-Z0-9]\.?)+[^\.]$/;
+        let result = document.getElementById('result');
+
+        console.log(re.test(expression));
+
+        if(expression == null){
+            alert("please enter something");
+        }
+
+        if(re.test(expression)){
+            let div = document.createElement('div');
+            div.className = `alert success`;
+            div.appendChild(document.createTextNode(`${expression} is a valid email`));
+            result.appendChild(div);
+            setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
+        }else{
+            let div = document.createElement('div');
+            div.className = `alert error`;
+            div.appendChild(document.createTextNode(`${expression} is not a valid email`));
+            result.appendChild(div);
+            setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
+        }
+        
+    }
+
+    function validatePhone(){
+        let expression = prompt("Enter to validate Phone number. Region : Bangladesh");
+        let re = /^(\+)?(88)?01[0-9]{9}$/;
+        let result = document.getElementById('result');
+
+        console.log(re.test(expression));
+
+        if(expression == null){
+            alert("please enter something");
+        }
+
+        if(re.test(expression)){
+            let div = document.createElement('div');
+            div.className = `alert success`;
+            div.appendChild(document.createTextNode(`${expression} is a valid number`));
+            result.appendChild(div);
+            setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
+        }else{
+            let div = document.createElement('div');
+            div.className = `alert error`;
+            div.appendChild(document.createTextNode(`${expression} is not a valid number`));
+            result.appendChild(div);
+            setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
+        }
+        
+    }
+
+    function validatePostal(){
+
+        let expression = prompt("Enter to validate postal code");
+        let re = /^[0-9]{4}$/;
+        let result = document.getElementById('result');
+
+        console.log(re.test(expression));
+
+        if(expression == null){
+            alert("please enter something");
+        }
+
+        if(re.test(expression)){
+            let div = document.createElement('div');
+            div.className = `alert success`;
+            div.appendChild(document.createTextNode(`${expression} is a valid postal code`));
+            result.appendChild(div);
+            setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
+        }else{
+            let div = document.createElement('div');
+            div.className = `alert error`;
+            div.appendChild(document.createTextNode(`${expression} is not a valid postal code`));
+            result.appendChild(div);
+            setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
+        }
+        
+}
+</script>
+
+</html>
