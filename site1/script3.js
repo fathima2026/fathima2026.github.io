@@ -9,7 +9,7 @@ list.addEventListener('click', removefromCart);
 
 function addToCart(e){
 
-    count++;
+    
     let list = document.querySelector('#shopping_list');
     let row = document.createElement('tr');
     let price = e.target.previousElementSibling.innerHTML;
