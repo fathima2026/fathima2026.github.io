@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+        integrity="sha256-ECB9bbROLGm8wOoEbHcHRxlHgzGqYpDtNTgDTyDz0wg=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title> Number Guessing game </title>
+   
+    <style>
+        .success .error {
+            color:white;
+            padding: 100px;
+            margin: 20px 0 15px 0;
+            border-radius: 5px;
+        }
+        .success{
+            background: rgb(128, 246, 145);
+            padding: 25px;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+        }
+        .error{
+            background: rgb(222, 102, 102);
+            padding: 25px;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+        }
+
+        i{
+            color: red;
+            scale: 2;
+            margin-top: 25px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h4 style="text-align: center; margin-top: 20px;">Guess the number it is between 1 and 10! You have 3 chances!</h4>
+        
+        <button class="u-full-width" style="margin-top: 20px; border-radius: 8px;" onclick="play()">Start game!</button>
+        
+       
+    
+    </div>
+    
+    <div id="result"></div>
+  
+
+</body>
+
+<script>
+    
+    
+
+    
+
+
+
+    function getRandomIntInclusive(min, max) {
+     
+        min = Math.ceil(min);
+  
+        max = Math.floor(max);
+  
+        return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+
+    }
+
+ 
+    function play() {
+
+
+    let correct_ans = getRandomIntInclusive(1, 10);
+
+    console.log(correct_ans);
+    
+    let count = 1;
+    let user_ans;
+    let flag = false;
+   
+
+    while(count<=3){
+
+    user_ans = prompt(`${count} attempt : Guess the number. The number is between 1 and 10`);
+
+    if(user_ans == ""){
+       
+            alert("Enter a number");
+         
+    }else if(user_ans == null){
+
+          break;
+
+    }else if(user_ans>10 || user_ans<0){
+
+        alert("Number out of range");
+    
+    } if(user_ans<correct_ans && user_ans<=10 && user_ans>=0){
+
+        alert("Correct answer is greater");
+       
+        count++;
+
+    }else if(user_ans>correct_ans && user_ans<=10 && user_ans>=0){
+
+        alert("Correct answer is smaller");
+        count++
+    
+    }else{
+
+        alert("you win");
+        flag = true;
+        break;
+
+    }
+    }
+
+    if(flag==false && count > 3 ){
+        let result = document.getElementById('result');
+        let div = document.createElement('div');
+            div.className = `alert error`;
+            div.appendChild(document.createTextNode("you lose"));
+            result.appendChild(div);
+            setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
+    }
+
+}
+
+
+</script>
+
+</html>
