@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"
+        integrity="sha256-ECB9bbROLGm8wOoEbHcHRxlHgzGqYpDtNTgDTyDz0wg=" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title> Number Guessing game </title>
+   
+    <style>
+        .success .error {
+            color:white;
+            padding: 100px;
+            margin: 20px 0 15px 0;
+            border-radius: 5px;
+        }
+        .success{
+            background: rgb(128, 246, 145);
+            padding: 25px;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+        }
+        .error{
+            background: rgb(222, 102, 102);
+            padding: 25px;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+        }
+
+        i{
+            color: red;
+            scale: 2;
+            margin-top: 25px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h4 style="text-align: center; margin-top: 20px;">Guess the number it is between 1 and 5! You have 3 chances!</h4>
+
+        <input id="guess" type="text" class="u-full-width">
+        
+        <button class="u-full-width" style="margin-top: 20px; border-radius: 8px;" onclick="checkResult()">Check result</button>
+        
+        <div style="margin: auto;align-items: center; width: 10%;"> <i class="fas fa-heart" "></i><i style="margin-left: 20px"class="fas fa-heart"></i><i style="margin-left: 20px" class="fas fa-heart"></i></div>
+       
+    
+    </div>
+    
+    <div id="result"></div>
+  
+
+</body>
+
+<script>
+    
+    function getRandomIntInclusive(min, max) {
+     
+        min = Math.ceil(min);
+  
+        max = Math.floor(max);
+  
+        return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+
+
+    }
+
+    let correct_ans = getRandomIntInclusive(1, 5);
+
+    console.log(correct_ans);
+
+    let count = 1;
+
+    let user_ans;
+ 
+    function checkResult() {
+
+        let flag = false;
+   
+        if(count<=3){
+
+        user_ans = document.getElementById('guess').value;
+
+        console.log(user_ans);
+
+        if(user_ans == ""){
+       
+            ("Enter a number");
+         
+        }else if(user_ans<correct_ans){
+
+        alert("Correct answer is greater");
+        document.querySelector('i').setAttribute('style','color:none');
+        count++;
+
+       }else if(user_ans>correct_ans){
+
+        alert("Correct answer is smaller");
+        count++
+    
+       }else{
+
+        alert("you win");
+        count = 1
+        flag = true;
+        correct_ans = getRandomIntInclusive(1, 5);
+        console.log(correct_ans);
+      }
+    }
+    
+    if(count>3 && flag==false){
+        let result = document.getElementById('result');
+        let div = document.createElement('div');
+            div.className = `alert error`;
+            div.appendChild(document.createTextNode("you lose"));
+            result.appendChild(div);
+            setTimeout(() => {
+            document.querySelector('.alert').remove();
+        }, 3000);
+        count = 1
+        correct_ans = getRandomIntInclusive(1, 5);
+        console.log(correct_ans);
+    }
+
+
+
+    
+
+}
+
+
+</script>
+
+</html>
